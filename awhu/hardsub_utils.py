@@ -118,7 +118,7 @@ def hardsub_anime(hconfig:dict):
     os.rename(hconf["source"],hconf["source"].replace("`",""))
     begin = time.time()
     if("movie" in hconf["filter"]):
-        return IPython.get_ipython().run_cell(f"""!./ffmpeg -y -i "{hconf["source"]}" \
+        return IPython.get_ipython().run_cell(f"""!ffmpeg -y -i "{hconf["source"]}" \
         -map v {which_audio}? \
         -max_muxing_queue_size 1024 \
         -vf "scale={scale},ass=anime_sub.ass" \
@@ -127,7 +127,7 @@ def hardsub_anime(hconfig:dict):
         "{hconf["output_name"]}" -progress - -nostats""")
 
 
-    o=IPython.get_ipython().run_cell(f"""!./ffmpeg -y -i "{hconf["source"]}" \
+    o=IPython.get_ipython().run_cell(f"""!ffmpeg -y -i "{hconf["source"]}" \
     -map v {which_audio}? {("","-map s? -map t?")[no_sub]}\
     -max_muxing_queue_size 1024 \
     -vf "scale={scale},{("ass=anime_sub.ass,","")[no_sub]}ass=AWHT_New_WaterMark{is_old}.ass{hconf["filter"]}" \
