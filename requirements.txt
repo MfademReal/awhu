@@ -1,0 +1,14 @@
+lbry-libtorrent
+regex
+python-telegram-bot
+telethon
+ffsubsync
+torf-cli
+beautifulsoup4
+googlesearch-python
+requests
+youtube-dl
+pillow
+hachoir==3.1.1 
+pyaesni
+dill
