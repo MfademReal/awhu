@@ -122,7 +122,7 @@ def hardsub_anime(hconfig:dict):
         -map v {which_audio}? \
         -max_muxing_queue_size 1024 \
         -vf "scale={scale},ass=anime_sub.ass" \
-        -c:a libfdk_aac -b:a 128k -ac 2 \
+        -c:a aac -b:a 128k -ac 2 \
         -c:v {hconf["encoder"]} -preset "{hconf["preset"]}" -crf "{hconf["crf"]}" -pix_fmt yuv420p -tune film\
         "{hconf["output_name"]}" -progress - -nostats""")
 
@@ -131,7 +131,7 @@ def hardsub_anime(hconfig:dict):
     -map v {which_audio}? {("","-map s? -map t?")[no_sub]}\
     -max_muxing_queue_size 1024 \
     -vf "scale={scale},{("ass=anime_sub.ass,","")[no_sub]}ass=AWHT_New_WaterMark{is_old}.ass{hconf["filter"]}" \
-    -c:a libfdk_aac -b:a 128k -ac 2 \
+    -c:a aac -b:a 128k -ac 2 \
     -c:v {hconf["encoder"]} -preset "{hconf["preset"]}" -crf "{hconf["crf"]}" {x264_extra_configs} \
     "{hconf["output_name"]}" -progress - -nostats""")
 
