@@ -76,7 +76,7 @@ def hardsub_anime(hconfig:dict):
     if(len(hconf["output_name"])>64):  
         logging.warning("اسم انیمه خیلی طولانیه، کوتاه ترش کنید")
         return
-    ffmpeg_data= Popen(f"./ffmpeg -i \"{hconf['source']}\"", shell=True, stdin=PIPE, stdout=PIPE, stderr=STDOUT, close_fds=True).stdout.read().decode(encoding= 'unicode_escape')
+    ffmpeg_data= Popen(f"!ffmpeg -i \"{hconf['source']}\"", shell=True, stdin=PIPE, stdout=PIPE, stderr=STDOUT, close_fds=True).stdout.read().decode(encoding= 'unicode_escape')
     audio_list=[x.groups() for x in regex.finditer(
             "Stream #0:([0-9])\(([a-z]{2,3})\): Audio:", ffmpeg_data)]
     audio_dict={a:int(ai)-1 for ai,a in audio_list}
