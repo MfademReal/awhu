@@ -10,7 +10,7 @@ apt install python3-libtorrent
 7z x All_Needy_Fonts.7z -o/usr/share/fonts/ -y
 rm /usr/share/fonts/pHalls* 
 fc-cache -f 
-git clone https://github.com/darkido/fonts.git
+git clone https://github.com/awht-team/fonts.git
 cd "fonts" && cp *.ttf *.TTF *.otf *.OTF *.ttc *.TTC /usr/share/fonts/ 
 touch /content/INSTALLED
 """
