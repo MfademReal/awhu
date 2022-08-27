@@ -37,7 +37,7 @@ def get_mediainfo(media):
     return media_info
 
 
-def get_hardsub_info(hconf,mode):
+def get_hardsub_info(hconf):
     source=hconf["source"]
     output=hconf["output_name"]
     source_info = get_mediainfo(source)
@@ -59,7 +59,7 @@ def get_hardsub_info(hconf,mode):
         <b>Preset</b>: #{hconf["preset"]}
         <b>crf</b>: {hconf["crf"]}
         <b>Elapsed Time</b>: {hconf["elapsed time"]}
-#{mode}
+#{hconf["preset"]}_{hconf["resolution"]}
 #{hconf["anime_name"].replace(" ","_")}_{hconf["episode_number"]}
 #{hconf["anime_name"].replace(" ","_")}_{hconf["resolution"]}_{hconf["episode_number"]}"""
 
