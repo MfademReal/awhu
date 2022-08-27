@@ -36,8 +36,8 @@ def get_mediainfo(media):
         "Video(?s).*Writing library\s+: ([^(\n\s)]*).*Audio", media_data)
     return media_info
 
-#mode
-def get_hardsub_info(hconf):
+
+def get_hardsub_info(hconf,mode):
     source=hconf["source"]
     output=hconf["output_name"]
     source_info = get_mediainfo(source)
