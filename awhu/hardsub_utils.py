@@ -137,12 +137,12 @@ def hardsub_anime(hconfig:dict):
 
 
 
-  #  end = time.time()
-  #  hconf["elapsed time"]=f"{int((end-begin)//60)} min : {int((end-begin)%60)} sec"
-  #  h_info=get_hardsub_info(hconf)
-  #  disable_log=hconf.get("disable_log",False)
-   # if(not disable_log):
-   #     send_log_public(h_info,hconf["level"])
+    end = time.time()
+    hconf["elapsed time"]=f"{int((end-begin)//60)} min : {int((end-begin)%60)} sec"
+    h_info=get_hardsub_info(hconf)
+    disable_log=hconf.get("disable_log",False)
+    if(not disable_log):
+        send_log_public(h_info,hconf["level"])
 
     # Non-Direct Upload
     if(Config.AWHT_ID in ["Shiroyasha","NOT85","Phantom"]):
