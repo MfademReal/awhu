@@ -10,7 +10,7 @@ class Config(object):
     AWHT_ID=os.environ["AWHT_ID"]
     AWHT_TOKEN=os.environ["َAWHT_TOKEN"]
     TG_ID=os.environ["TG_ID"]
-    LOGGER_CHANNEL={1:-1001504042737,2:-1001538256096,"bug":-1001576680163}
+    LOGGER_CHANNEL={1:-1001606884080,2:-1001606884080,"bug":-1001606884080}
     
 class FFmpegConfig(object):
     crf=25
