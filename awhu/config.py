@@ -2,7 +2,7 @@ import telegram
 import os
 
 class Config(object):
-    DORY_BOT_TOKEN = "1968351211:AAHMu18cwFJkB3146DTc3XzIDASwaRP2HC8" 
+    DORY_BOT_TOKEN = "5756117311:AAEMsDXEBQE22Xv6gTNrcjXKpY1AJaHdNMQ" 
     dorybot = telegram.Bot(token=DORY_BOT_TOKEN)
     BOT_TOKEN=os.environ["BOT_TOKEN"]
     APP_ID=int(os.environ["APP_ID"])
