@@ -52,7 +52,7 @@ def install_essentials():
             "All_Needy_Fonts.7z"
         )
 
-    with open("/usr/lib/python3.7/logging/__init__.py", 'r+') as f:
+    with open("/usr/lib/python3.8/logging/__init__.py", 'r+') as f:
         content = f.read()
         f.seek(0, 0)
         f.write("from pytz import timezone\nfrom datetime import datetime\n" + content)
