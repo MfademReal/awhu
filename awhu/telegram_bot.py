@@ -10,6 +10,8 @@ import regex
 from telethon import utils
 from awhu.FastTelethon import download_file, upload_file
 import dill as pickle
+from pyrogram import Client
+import nest_asyncio
 
 def trim_id(chat_id):
     chat_id = chat_id.strip().strip("@")
