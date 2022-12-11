@@ -186,3 +186,14 @@ def send_msg(chat_id,msg):
     bot = TelegramClient('bot', Config.APP_ID, Config.API_HASH).start(bot_token=Config.BOT_TOKEN)
     if(msg!=""):
         bot.send_message(chat_id,msg)
+
+
+def test(t_id,filename):
+  async def progress(current, total):
+    print(f"{current * 100 / total:.1f}%")
+
+  async def main():
+    async with Client("bot2", api_id=Config.APP_ID, api_hash=Config.API_HASH, bot_token=Config.BOT_TOKEN) as app:
+        await app.send_document(t_id, filename, progress=progress)
+
+  asyncio.run(main())
