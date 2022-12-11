@@ -10,6 +10,8 @@ from awhu.hardsub_logger import *
 import IPython
 from threading import Thread
 import logging
+from pyrogram import Client
+import nest_asyncio
 
 def auto_detect_source(anime_name,episode_number):
     possible_anime_names = [anime_name, anime_name.replace(" ", "_"), anime_name.replace(" ", "-"),
