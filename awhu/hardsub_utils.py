@@ -48,6 +48,8 @@ def hardsub_anime(hconfig:dict):
     x264_extra_configs=""
     if(hconf["encoder"]=="libx264"):
         x264_extra_configs=" -tune animation -deblock 0:0 -flags +loop"
+    else:
+        x264_extra_configs=" -pix_fmt yuv420p10"
     print(f"x264 configs: {x264_extra_configs}")
     hconf["filter"]=f",{hconf['filter']}" if hconf.get("filter","").strip()!="" else ""
     for k,v in hconf.items():
@@ -98,7 +100,7 @@ def hardsub_anime(hconfig:dict):
         logging.warning("\n\n\n\nزبانی که انتخاب کردید یافت نشد صدای دیفالت رو انتخاب میکنیم")
        
         time.sleep(2)
-    which_audio=f"-map a:{audio_id}" if(hconf["audio"]!="Dual") else"-map a"
+    
     
     if(not no_sub):
         sub=Subtitle(hconf["subtitle"])
@@ -107,7 +109,9 @@ def hardsub_anime(hconfig:dict):
         sub_log2=sub.numbers_bug_fixer()
         logging.warning(sub_log2)
         sub.export("anime_sub.ass")
-
+    
+    language = hconf['audio']
+    hardsub_lang=f" -map 0:m:language:{language} -map -s?" if(not no_sub) else ""
     # resolution
     scale=f"trunc(oh*a/2)*2:{hconf['resolution']}"
     hd_resolution={"480":852,"720":1280,"1080":1920}
@@ -119,7 +123,7 @@ def hardsub_anime(hconfig:dict):
     begin = time.time()
     if("movie" in hconf["filter"]):
         return IPython.get_ipython().run_cell(f"""!ffmpeg -y -i "{hconf["source"]}" \
-        -map v {which_audio}? \
+        -map v {hardsub_lang}? \
         -max_muxing_queue_size 1024 \
         -vf "scale={scale},ass=anime_sub.ass" \
         -c:a aac -b:a 128k -ac 2 \
@@ -128,7 +132,7 @@ def hardsub_anime(hconfig:dict):
 
 
     o=IPython.get_ipython().run_cell(f"""!ffmpeg -y -i "{hconf["source"]}" \
-    -map v {which_audio}? {("","-map s? -map t?")[no_sub]}\
+    -map v {hardsub_lang} {(""," -map 0:m:language:{lang} -map s? -c:s copy".format(lang=hconf['audio']))[no_sub]}\
     -max_muxing_queue_size 1024 \
     -vf "scale={scale},{("ass=anime_sub.ass,","")[no_sub]}ass=AWHT_New_WaterMark{is_old}.ass{hconf["filter"]}" \
     -c:a aac -b:a 128k -ac 2 \
