@@ -6,7 +6,7 @@ import regex
 import requests
 from subprocess import Popen, PIPE, STDOUT
 from awhu.subtitle import Subtitle
-from awhu.hardsub_logger import *
+#from awhu.hardsub_logger import *
 import IPython
 from threading import Thread
 import logging
@@ -141,19 +141,10 @@ def hardsub_anime(hconfig:dict):
 
 
 
-    end = time.time()
-    hconf["elapsed time"]=f"{int((end-begin)//60)} min : {int((end-begin)%60)} sec"
-    h_info=get_hardsub_info(hconf)
-    disable_log=hconf.get("disable_log",False)
-    if(not disable_log):
-        send_log_public(h_info,hconf["level"])
+   # end = time.time()
+    #hconf["elapsed time"]=f"{int((end-begin)//60)} min : {int((end-begin)%60)} sec"
+    #h_info=get_hardsub_info(hconf)
+    #disable_log=hconf.get("disable_log",False)
+    #if(not disable_log):
+     #   send_log_public(h_info,hconf["level"])
 
-    # Non-Direct Upload
-    if(Config.AWHT_ID in ["Shiroyasha","NOT85","Phantom"]):
-        payload= {'chat_id':Config.TG_ID}
-        file=hconf["output_name"]
-        files={'file': (file, open(file, 'rb')),}
-        begin = time.time()
-        x=requests.post("https://colab-hs.herokuapp.com/upload",data=payload,files=files)
-        end = time.time()
-        print(f"{int((end-begin)//60)} min : {int((end-begin)%60)} sec")
