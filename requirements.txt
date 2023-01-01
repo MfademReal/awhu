@@ -15,3 +15,4 @@ dill
 nest_asyncio
 pyrogram
 tgcrypto
+telegram
