@@ -46,7 +46,7 @@ def hardsub_anime(hconfig:dict):
     hconf=hconfig.copy()
     x264_extra_configs=""
     if(hconf["encoder"]=="libx264"):
-        x264_extra_configs=" -tune animation -deblock 0:0 -flags +loop -pix-fmt yuv420"
+        x264_extra_configs=" -tune animation -deblock 0:0 -flags +loop -pix_fmt yuv420"
     else:
         x264_extra_configs=" -pix_fmt yuv420p10"
     print(f"x264 configs: {x264_extra_configs}")
