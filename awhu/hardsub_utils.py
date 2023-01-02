@@ -49,6 +49,10 @@ def hardsub_anime(hconfig:dict):
         x264_extra_configs=" -tune animation -deblock 0:0 -flags +loop -pix_fmt yuv420p"
     else:
         x264_extra_configs=" -pix_fmt yuv420p10"
+    if(hconf["audio"]=="all"):
+        audioconf = "-map a -map s?"
+    else:
+        audioconf = " -map 0:m:language:{lang} -c:s copy".format(lang=hconf['audio'])
     print(f"x264 configs: {x264_extra_configs}")
     hconf["filter"]=f",{hconf['filter']}" if hconf.get("filter","").strip()!="" else ""
     for k,v in hconf.items():
@@ -110,7 +114,11 @@ def hardsub_anime(hconfig:dict):
         sub.export("anime_sub.ass")
     
     language = hconf['audio']
-    hardsub_lang=f" -map 0:m:language:{language} -map -s?" if(not no_sub) else ""
+    if (language !="all"):
+        angconf = f" -map 0:m:language:{language} -map -s?"
+    else:
+        langconf = " -map a -map -s?"
+    hardsub_lang=f"{langconf}" if(not no_sub) else ""
     # resolution
     scale=f"trunc(oh*a/2)*2:{hconf['resolution']}"
     hd_resolution={"480":852,"720":1280,"1080":1920}
@@ -131,7 +139,7 @@ def hardsub_anime(hconfig:dict):
 
 
     o=IPython.get_ipython().run_cell(f"""!ffmpeg -y -i "{hconf["source"]}" \
-    -map v {hardsub_lang} {(""," -map 0:m:language:{lang} -map s? -c:s copy".format(lang=hconf['audio']))[no_sub]}\
+    -map v {hardsub_lang} {("", {audioconf})[no_sub]}\
     -max_muxing_queue_size 1024 \
     -vf "scale={scale},{("ass=anime_sub.ass,","")[no_sub]}ass=AWHT_New_WaterMark{is_old}.ass{hconf["filter"]}" \
     -c:a aac -b:a 128k -ac 2 \
@@ -146,4 +154,3 @@ def hardsub_anime(hconfig:dict):
     #disable_log=hconf.get("disable_log",False)
     #if(not disable_log):
      #   send_log_public(h_info,hconf["level"])
-
