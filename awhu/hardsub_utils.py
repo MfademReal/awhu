@@ -52,7 +52,7 @@ def hardsub_anime(hconfig:dict):
     if(hconf["audio"]=="all"):
         audioconf = "-map a -map s?"
     else:
-        audioconf = " -map 0:a:language:{lang} -c:s copy".format(lang=hconf['audio'])
+        audioconf = " -map 0:a:m:language:{lang} -c:s copy".format(lang=hconf['audio'])
     print(f"x264 configs: {x264_extra_configs}")
     hconf["filter"]=f",{hconf['filter']}" if hconf.get("filter","").strip()!="" else ""
     for k,v in hconf.items():
@@ -115,7 +115,7 @@ def hardsub_anime(hconfig:dict):
     
     language = hconf['audio']
     if (language !="all"):
-        langconf = f" -map 0:a:language:{language} -map -s?"
+        langconf = f" -map 0:a:m:language:{language} -map -s?"
     else:
         langconf = " -map a -map -s?"
     hardsub_lang=f"{langconf}" if(not no_sub) else ""
