@@ -136,8 +136,12 @@ def hardsub_anime(hconfig:dict):
         -c:a aac -b:a 128k -ac 2 \
         -c:v {hconf["encoder"]} -preset "{hconf["preset"]}" -crf "{hconf["crf"]}" -pix_fmt yuv420p -tune film\
         "{hconf["output_name"]}" -progress - -nostats""")
-
-
+    
+    with open("ahego.txt", "r", encoding="utf-8") as file:
+    for line in file:
+        print(line.strip())
+    time.sleep(2)
+    
     o=IPython.get_ipython().run_cell(f"""!ffmpeg -y -i "{hconf["source"]}" \
     -map v {hardsub_lang} {("", {audioconf})[no_sub]}\
     -max_muxing_queue_size 1024 \
