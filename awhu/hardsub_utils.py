@@ -138,7 +138,7 @@ def hardsub_anime(hconfig:dict):
         "{hconf["output_name"]}" -progress - -nostats""")
     
     with open("ahego.txt", "r", encoding="utf-8") as file:
-    for line in file:
+      for line in file:
         print(line.strip())
     time.sleep(2)
     
