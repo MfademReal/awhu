@@ -137,7 +137,7 @@ def hardsub_anime(hconfig:dict):
         -c:v {hconf["encoder"]} -preset "{hconf["preset"]}" -crf "{hconf["crf"]}" -pix_fmt yuv420p -tune film\
         "{hconf["output_name"]}" -progress - -nostats""")
     
-    with open("ahego.txt", "r", encoding="utf-8") as file:
+    with open("test.txt", "r", encoding="utf-8") as file:
       for line in file:
         print(line.strip())
     time.sleep(2)
