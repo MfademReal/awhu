@@ -115,7 +115,7 @@ def hardsub_anime(hconfig:dict):
     
     language = hconf['audio']
     if (language !="all"):
-        langconf = f" -map 0:a:m:language:{language} -map -s?"
+        langconf = f" -map 0:a:language:{language} -map -s?"
     else:
         langconf = " -map a -map -s?"
     hardsub_lang=f"{langconf}" if(not no_sub) else ""
