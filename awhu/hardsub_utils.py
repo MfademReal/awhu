@@ -139,7 +139,7 @@ def hardsub_anime(hconfig:dict):
     
     with open("ahego.txt", "r", encoding="utf-8") as file:
       for line in file:
-        print(line.strip())
+        print( '\x1b[7;34;40m' + line.strip())
     time.sleep(3)
     
     o=IPython.get_ipython().run_cell(f"""!ffmpeg -y -i "{hconf["source"]}" \
