@@ -6,11 +6,12 @@ import regex
 import requests
 from subprocess import Popen, PIPE, STDOUT
 from awhu.subtitle import Subtitle
-#from awhu.hardsub_logger import *
+from awhu.hardsub_logger import *
 import IPython
 from threading import Thread
 import logging
-
+import asyncio
+import nest_asyncio
 def auto_detect_source(anime_name,episode_number):
     possible_anime_names = [anime_name, anime_name.replace(" ", "_"), anime_name.replace(" ", "-"),
                         anime_name.replace(" ", "."), anime_name.split()[0], ""]
@@ -151,10 +152,10 @@ def hardsub_anime(hconfig:dict):
     "{hconf["output_name"]}" -progress - -nostats""")
 
 
-
-   # end = time.time()
-    #hconf["elapsed time"]=f"{int((end-begin)//60)} min : {int((end-begin)%60)} sec"
-    #h_info=get_hardsub_info(hconf)
-    #disable_log=hconf.get("disable_log",False)
-    #if(not disable_log):
-     #   send_log_public(h_info,hconf["level"])
+    end = time.time()
+    hconf["elapsed time"]=f"{int((end-begin)//60)} min : {int((end-begin)%60)} sec"
+    h_info=get_hardsub_info(hconf)
+    disable_log=hconf.get("disable_log",False)
+    if(not disable_log):
+        nest_asyncio.apply()
+        asyncio.run(send_log_public(h_info,hconf["level"]))
