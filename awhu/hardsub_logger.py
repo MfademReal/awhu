@@ -1,6 +1,6 @@
 import os
 import regex
-from telegram.constants import PARSEMODE_HTML,PARSEMODE_MARKDOWN
+from telegram.constants import ParseMode
 from awhu.config import Config
 import sys
 import logging
@@ -66,13 +66,13 @@ def get_hardsub_info(hconf):
    
 
 
-def send_log_public(log_info,level):
-    Config.dorybot.send_message(chat_id=Config.LOGGER_CHANNEL[level], text=log_info,
-                        parse_mode=PARSEMODE_HTML)
+async def send_log_public(log_info,level):
+   await Config.dorybot.send_message(chat_id=Config.LOGGER_CHANNEL[level], text=log_info,
+                        parse_mode=ParseMode.HTML)
 
 def send_log_private(log_info,chat_id=Config.TG_ID):
     Config.dorybot.send_message(chat_id=chat_id, text=log_info,
-                        parse_mode=PARSEMODE_HTML)
+                        parse_mode=ParseMode.HTML)
 
 
 def report_bug(title,desc):
