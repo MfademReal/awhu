@@ -61,6 +61,7 @@ def get_hardsub_info(hconf):
         <b>Elapsed Time</b>: {hconf["elapsed time"]}
 #{hconf["preset"]}_{hconf["resolution"]}
 #{hconf["anime_name"].replace(" ","_")}_{hconf["episode_number"]}
+#{hconf["anime_name"]}
 #{hconf["anime_name"].replace(" ","_")}_{hconf["resolution"]}_{hconf["episode_number"]}"""
 
    
