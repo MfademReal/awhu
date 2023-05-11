@@ -200,7 +200,7 @@ def send_msg(chat_id,msg):
         bot.send_message(chat_id,msg)
 
 
-def testupload(t_id,filename, reply_to_message_id="2"):
+def testupload(t_id,filename, reply_to_message_id):
   async def progress(current, total):
     print(f"{current * 100 / total:.1f}%")
 
