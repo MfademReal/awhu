@@ -43,7 +43,7 @@ fontpack_gdrive_ids=[
 
 def install_essentials():
     from awhu.config import Config      
-    os.system(f"git clone https://github.com/MfademReal/aw_stuff/* . && rm -r aw_stuff")
+    os.system(f"git clone https://github.com/MfademReal/aw_stuff.git && mv aw_stuff/* . && rm -r aw_stuff")
     while(not os.path.exists("All_Needy_Fonts.7z")):
         gd=random.choice(fontpack_gdrive_ids)
         # os.system(f"gdown --id {gd}")
